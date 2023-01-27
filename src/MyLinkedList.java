@@ -1,14 +1,18 @@
-import java.sql.SQLOutput;
-import java.util.List;
-
 public class MyLinkedList {
     ListNode head;
-    private ListNode end;
-    private ListNode current;
+    private int count;
 
-    public void add(String data) { // pass in multiple data points into a node (can store multiple data points in same node)
+    public MyLinkedList() {
+        count = 1;
+    }
+
+    public void add(String fName, String lName, String pNumber, String city, String address) {
         ListNode node = new ListNode();
-        node.data = data;
+        node.fName = fName;
+        node.lName = lName; // assign String values from PB entry into the node
+        node.pNumber = pNumber;
+        node.address = address;
+        node.city = city;
         node.next = null;
 
         if (head == null) { // if the head of list is null, set the head of list as node
@@ -26,9 +30,13 @@ public class MyLinkedList {
         ListNode node = head;
 
         while (node != null) {
-            System.out.println("Phonebook Entry: ");
-            System.out.println(node.data);
+            System.out.println("Phonebook Entry #" + count);
+            System.out.println("Name: " + node.lName + ", " + node.fName);
+            System.out.println("Phone Number: " + node.pNumber);
+            System.out.println("Address: " + node.address);
+            System.out.println("City: " + node.city);
             System.out.println();
+            count++;
             node = node.next;
         }
     }

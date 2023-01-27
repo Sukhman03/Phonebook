@@ -1,4 +1,8 @@
 public class ListNode {
     ListNode next;
-    String data;
+    String fName;
+    String lName;
+    String address;
+    String city;
+    String pNumber;
 }
