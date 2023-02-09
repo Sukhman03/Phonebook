@@ -1,13 +1,7 @@
-import java.util.List;
-import java.util.Scanner;
 
 public class MyLinkedList {
     private ListNode head;
-    private int totalEntryCount; // tracks amount of entries in phonebook
 
-    public MyLinkedList() {
-        totalEntryCount = 0;
-    }
     public void add(String fName, String lName, String pNumber, String city, String address) {
         ListNode node = new ListNode();
         node.fName = fName;
@@ -26,7 +20,6 @@ public class MyLinkedList {
             }
             newNode.next = node; // sets end node value
         }
-        totalEntryCount++;
     }
 
     public void print() {
@@ -45,23 +38,14 @@ public class MyLinkedList {
     }
 
     public void search(int index) {
-        Scanner scan = new Scanner(System.in);
         ListNode node = head;
-        while (true) { // if they ask for an entry that doesn't exist
-            if (index> totalEntryCount || index < 0) {
-                System.out.println("Please enter a valid entry 1-" + totalEntryCount + ": ");
-                index = scan.nextInt();
-            } else {
-                break;
-            }
-        }
         int count = 1;
-        for (int i = 0; i < index - 1; i++) {
+        for (int i = 1; i < index - 2; i++) {
             node = node.next;
             count++;
         }
         System.out.println("Phonebook Entry #" + count);
-        System.out.println("Name: " + node.lName + ", " + node.fName);
+        System.out.println("Name: " + node.lName+ ", " + node.fName);
         System.out.println("Phone Number: " + node.pNumber);
         System.out.println("Address: " + node.address);
         System.out.println("City: " + node.city);
@@ -78,7 +62,6 @@ public class MyLinkedList {
         node.next = null;
         node.next = head;
         head = node;
-        totalEntryCount++;
     }
 
     public void addAt(int index, String fName, String lName, String pNumber, String city, String address) {
@@ -89,32 +72,32 @@ public class MyLinkedList {
         node.address = address;
         node.city = city;
         node.next = null;
-        if (index == 0) { // if they try to add at start
+        if (index == 0 || head == null) { // if they try to add at start or list is empty
             addAtStart(fName, lName, pNumber, city, address);
+        } else {
+            ListNode newNode = head;
+            for (int i = 1; i < index - 1; i++) {
+                newNode = newNode.next;
+            }
+            node.next = newNode.next;
+            newNode.next = node;
         }
-        ListNode newNode = head;
-        for (int i = 1; i < index - 1; i++) {
-            newNode = newNode.next;
-        }
-        node.next = newNode.next;
-        newNode.next = node;
-        totalEntryCount++;
-
     }
 
     public void deleteAt(int index) {
-
-        if (index == 0) {
-            head = head.next;
-        } else {
-            ListNode newNode = head;
-            ListNode n = null;
-            for (int i = 1; i< index - 1; i++) {
-                newNode = newNode.next;
+            if (index == 0) {
+                index++;
             }
-            n = newNode.next;
-            newNode.next = n.next;
-        }
-
+            if (index == 1) {
+                head = head.next;
+            } else {
+                ListNode newNode = head;
+                ListNode n = null;
+                for (int i = 1; i < index - 2; i++) {
+                    newNode = newNode.next;
+                }
+                n = newNode.next;
+                newNode.next = n.next;
+            }
     }
 }
