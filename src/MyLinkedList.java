@@ -40,7 +40,7 @@ public class MyLinkedList {
     public void search(int index) {
         ListNode node = head;
         int count = 1;
-        for (int i = 1; i < index - 2; i++) {
+        for (int i = 0; i < index - 1; i++) {
             node = node.next;
             count++;
         }

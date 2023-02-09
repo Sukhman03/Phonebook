@@ -9,7 +9,7 @@ public class Phonebook {
         totalEntryCount = 0;
     }
 
-    public void getInfo(int addToLocation) {
+    public void getInfo(int addToLocation) { // gets info to add
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter the contact info:");
         System.out.println("\nFirst Name: ");
@@ -27,7 +27,7 @@ public class Phonebook {
     }
 
     public void addContact(int addToLocation, String fName, String lName, String pNumber, String city, String address) {
-            totalEntryCount++;
+            totalEntryCount++; // add contact to list
             if (addToLocation == 1) {
                 bookManage.list.addAtStart(fName, lName, pNumber, city, address); // add to start
             } else if (addToLocation == 2) {
@@ -39,34 +39,26 @@ public class Phonebook {
             }
         }
 
-    public void deleteContact() {
+    public void deleteContact() { // delete contact
                 totalEntryCount--;
                 System.out.println("Please enter an index number for deletion: ");
                 int index = indexCheck();
                 bookManage.list.deleteAt(index);
     }
 
-    public void searchContact() {
+    public void searchContact() { // search contact
             System.out.println("Please enter an index number to search: ");
             int index = indexCheck();
             bookManage.list.search(index);
     }
 
-    public int indexCheck() {
+    public int indexCheck() { // get index
         Scanner scan1 = new Scanner(System.in);
         int index = scan1.nextInt();
-        /*while (true) { // if they ask for an entry that doesn't exist
-            if (index> totalEntryCount || index < 0) {
-                System.out.println("Please enter a valid entry 1-" + totalEntryCount + ": ");
-                index = scan1.nextInt();
-            } else {
-                break;
-            }
-        } */
         return index;
     }
 
-    public void menu() {
+    public void menu() { // print menu
         System.out.println("\nPlease select a command: ");
         System.out.println("1. Add Contact");
         System.out.println("2. Delete Contact");
@@ -75,9 +67,9 @@ public class Phonebook {
         System.out.println("5. Exit");
     }
 
-    public void manageMenu() {
+    public void manageMenu() { // manages the menu
         boolean menuLoop = true;
-        while (menuLoop = true) {
+        while (true) {
             bookManage.menu();
             Scanner input = new Scanner(System.in);
             int command;
@@ -106,12 +98,16 @@ public class Phonebook {
                     break;
                 case 5:
                 default:
-                    menuLoop = false;
+                     menuLoop = false;
+            }
+
+            if (menuLoop == false) {
+                break;
             }
         }
     }
 
-    public static void addToLocation() {
+    public static void addToLocation() { // determines where to add entry
         Scanner console = new Scanner(System.in);
         int addLocate;
         System.out.println("\nPlease select a location for the entry:");

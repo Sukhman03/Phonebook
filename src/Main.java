@@ -5,7 +5,6 @@
 // Reference Materials:
 // Purpose: To create a phonebook using a self implemented linked list
 
-import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Phonebook book = new Phonebook();
